@@ -19,7 +19,7 @@ export class UsersService {
     })
   }
 
-  async findById(email: string) {
+  async findById(id: number) {
     return this.repository.findOneBy({
       id
     })
