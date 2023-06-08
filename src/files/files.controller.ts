@@ -4,7 +4,7 @@ import {
   Post,
   UseInterceptors,
   UploadedFile,
-  ParseFilePipe, MaxFileSizeValidator, UseGuards, Query
+  ParseFilePipe, MaxFileSizeValidator, UseGuards, Query, Delete
 } from '@nestjs/common';
 import { FilesService } from './files.service';
 import {ApiBearerAuth, ApiBody, ApiConsumes, ApiTags} from "@nestjs/swagger";
@@ -56,4 +56,11 @@ export class FilesController {
   ) {
     return this.filesService.create(file, userId)
   }
+
+  @Delete()
+  remove(@UserId() userId: number, @Query('id') ids: string) {
+    // files?ids=1,2,7,8
+    return this.filesService.remove(userId, ids)
+  }
+
 }
